@@ -1,0 +1,25 @@
+# Version 1.0
+
+PORT=/dev/ttyACM0
+BOARD=esp32
+
+set_board:
+	idf.py set-target $(BOARD)
+
+config:
+	idf.py menuconfig
+
+idf:
+	. ~/esp/esp-idf/export.sh
+
+build:
+	idf.py build
+
+upload:
+	idf.py -p $(PORT) flash
+
+monitor:
+	idf.py -p $(PORT) monitor
+
+clear:
+	rm -R build
